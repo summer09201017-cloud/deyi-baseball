@@ -17,5 +17,12 @@ try {
   }
 } catch (_) {}
 </script>
-  </body>
+  
+<!-- 🏷 版本號徽章(0831 VT1 批次;game-must-haves 第七件)。
+     ★ 本站沒有 sw.js ⇒ 靜態版號:改版時要手動 bump 這行(vN+日期)。 -->
+<div id="appVerBadge" style="position:fixed;right:6px;bottom:4px;font-size:11px;line-height:1;opacity:.55;z-index:2147483000;pointer-events:none;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9);font-family:system-ui,sans-serif">🏷️ 版本 v1(2026-08-31)</div>
+<script>
+;(function(){var b=document.getElementById('appVerBadge');if(!b)return;b.style.transition='opacity .8s';setTimeout(function(){b.style.opacity='0';setTimeout(function(){b.style.display='none'},900)},10000)})();
+</script>
+</body>
 </html>
