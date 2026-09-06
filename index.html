@@ -40,8 +40,6 @@
   body:not(.mfs-fs) #mfsFull:hover,body:not(.mfs-fs) #mfsFull:focus-visible{opacity:1}
 }
 </style>
-<!-- mfs-pwa-manifest v1 -->
-    <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -58,7 +56,7 @@ try {
 } catch (_) {}
 </script>
   
-<!-- 🏷 版本號徽章(0831 VT1 批次;game-must-haves 第七件)。
+<!-- mfs-pwa-manifest v1(deyi-baseball:manifest 由 vite-plugin-pwa 產生,只保留 apple-touch-icon 與 apple-mobile-web-app meta) 🏷 版本號徽章(0831 VT1 批次;game-must-haves 第七件)。
      ★ 本站沒有 sw.js ⇒ 靜態版號:改版時要手動 bump 這行(vN+日期)。 -->
 <div id="appVerBadge" style="position:fixed;right:6px;bottom:4px;font-size:11px;line-height:1;opacity:.55;z-index:2147483000;pointer-events:none;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9);font-family:system-ui,sans-serif">🏷️ 版本 v1(2026-08-31)</div>
 <script>
