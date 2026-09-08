@@ -610,13 +610,29 @@ export class BaseballGame {
     hip.castShadow = true;
     group.add(hip);
 
+    // 0908 人物頭頸鐵則(skill: figure-head-neck-rules):
+    // ★ 原本 headGroup 在 3.04 ⇒ 頭底 2.68,**低於軀幹上緣 2.8** ⇒ 頭整顆陷進身體,
+    //   下面那段 neck 有做卻一寸都看不到(「有 neck mesh」不等於「畫面上有脖子」)。
+    //   抬到 3.22 ⇒ 頭底 2.86,脖子露出 6cm。
     const headGroup = new THREE.Group();
-    headGroup.position.set(0, 3.04, 0.02);
+    headGroup.position.set(0, 3.22, 0.02);
     group.add(headGroup);
 
     const head = new THREE.Mesh(new THREE.SphereGeometry(0.36, 18, 18), skinMaterial);
     head.castShadow = true;
     headGroup.add(head);
+
+    // ★ 後腦頭髮:帽子只是一頂坐在頭頂的圓柱,帽緣以下整顆後腦是光的膚色(0908 全艦隊體檢紅燈)。
+    //   只包正後方 ±72°,兩側留空 ⇒ 不蓋耳。
+    const hairMaterial = new THREE.MeshStandardMaterial({ color: 0x3a2a1d, roughness: 0.92 });
+    const hairBack = new THREE.Mesh(
+      new THREE.SphereGeometry(0.368, 16, 8, Math.PI * 1.5 - 1.266, 2.532, Math.PI / 2 - 0.06, 0.54),
+      hairMaterial,
+    );
+    hairBack.position.set(0, 0.03, -0.02);
+    hairBack.castShadow = true;
+    hairBack.userData.napeGuard = true;
+    headGroup.add(hairBack);
 
     const capTop = new THREE.Mesh(new THREE.CylinderGeometry(0.35, 0.39, 0.16, 18), capMaterial);
     capTop.position.y = 0.2;
@@ -665,8 +681,9 @@ export class BaseballGame {
     mouthRight.position.x = 0.09;
     mouthGroup.add(mouthRight);
 
-    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.22, 10), skinMaterial);
-    neck.position.y = 2.72;
+    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.13, 0.26, 10), skinMaterial);
+    neck.position.y = 2.78;          // 2.65~2.91:下端埋進軀幹(上緣 2.8)、上端埋進頭球(底 2.86)
+    neck.userData.neck = true;
     neck.castShadow = true;
     group.add(neck);
 
