@@ -3,3 +3,6 @@ dist/
 dev-dist/
 .npm-cache/
 .wrangler/
+
+# 驗收截圖是產物,不進版控(與 hfpc-city3d 同慣例)
+screenshots/*.png
