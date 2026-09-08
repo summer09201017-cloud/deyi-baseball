@@ -50,9 +50,22 @@
     <script type="module" src="/src/main.js"></script>
     <script>
 try {
-  if (!['localhost','127.0.0.1'].includes(location.hostname)) {
+  var __local = ['localhost','127.0.0.1',''].includes(location.hostname);
+  if (!__local) {
     navigator.sendBeacon?.('https://hfpc-play-stats.summer09201017.workers.dev/api/ping?g=deyi-baseball');
   }
+  // 📊 真實停留(-dwell):07-25 起全艦隊標配。少了這一欄,統計會無聲缺一塊,
+  //    要等好幾天看 /stats 才發現。抽的 id 與 -done 同一個。
+  var __t0 = Date.now(), __sent = false;
+  var __bye = function () {
+    if (__sent || __local || !navigator.sendBeacon) return;
+    var s = Math.round((Date.now() - __t0) / 1000);
+    if (s < 3 || s > 1800) return;
+    __sent = true;
+    navigator.sendBeacon('https://hfpc-play-stats.summer09201017.workers.dev/api/ping?g=deyi-baseball-dwell&t=' + s);
+  };
+  addEventListener('pagehide', __bye);
+  addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') __bye(); });
 } catch (_) {}
 </script>
   
